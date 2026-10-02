@@ -1,0 +1,3615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Akbar — From Deandra ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#060606;
+    color:#f5f5f5;
+    font-family:"Inter",sans-serif;
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+::selection{
+    background:#fff;
+    color:#000;
+}
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+    --white:#f7f7f7;
+    --muted:#858585;
+    --dim:#4f4f4f;
+    --line:rgba(255,255,255,.11);
+    --glass:rgba(255,255,255,.045);
+    --glass2:rgba(255,255,255,.075);
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255,255,255,.07),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255,255,255,.045),
+            transparent 28%
+        );
+}
+
+.noise{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:9990;
+    opacity:.035;
+
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+#loadingScreen{
+    position:fixed;
+    inset:0;
+    background:#050505;
+    z-index:10000;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:opacity 1s ease, visibility 1s;
+}
+
+.loading-box{
+    width:min(420px,85%);
+    text-align:center;
+}
+
+.loading-small{
+    color:#666;
+    font-size:10px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+}
+
+.loading-title{
+    font-family:"DM Serif Display",serif;
+    font-size:48px;
+    font-weight:400;
+    margin-bottom:35px;
+}
+
+.loading-line{
+    width:100%;
+    height:1px;
+    background:#222;
+    overflow:hidden;
+}
+
+.loading-progress{
+    width:0%;
+    height:100%;
+    background:#fff;
+    transition:width .1s linear;
+}
+
+.loading-number{
+    color:#555;
+    font-size:10px;
+    letter-spacing:3px;
+    margin-top:15px;
+}
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+#pinScreen{
+    position:fixed;
+    inset:0;
+    z-index:9000;
+
+    background:#050505;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    padding:25px;
+
+    transition:.8s;
+}
+
+.pin-box{
+    width:min(420px,100%);
+    text-align:center;
+
+    padding:50px 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
+        );
+
+    border:1px solid var(--line);
+    border-radius:30px;
+
+    box-shadow:0 30px 100px rgba(0,0,0,.7);
+}
+
+.pin-label{
+    color:#666;
+    font-size:10px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+.pin-box h1{
+    font-family:"DM Serif Display",serif;
+    font-size:48px;
+    font-weight:400;
+}
+
+.pin-box p{
+    color:#777;
+    font-size:13px;
+    line-height:1.8;
+    margin:15px 0 30px;
+}
+
+#pinInput{
+    width:100%;
+    height:55px;
+
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--line);
+    border-radius:15px;
+
+    outline:none;
+    color:white;
+
+    text-align:center;
+    letter-spacing:12px;
+    font-size:19px;
+}
+
+#pinInput:focus{
+    border-color:rgba(255,255,255,.35);
+}
+
+.primary-btn{
+    width:100%;
+    min-height:52px;
+
+    border:none;
+    border-radius:15px;
+
+    background:#f4f4f4;
+    color:#050505;
+
+    font-weight:600;
+    margin-top:14px;
+
+    transition:.3s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 40px rgba(255,255,255,.12);
+}
+
+.pin-error{
+    color:#777;
+    font-size:11px;
+    margin-top:14px;
+    min-height:16px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+#main{
+    display:none;
+}
+
+.page{
+    width:min(1050px,92%);
+    margin:auto;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.nav{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:min(600px,90%);
+
+    padding:10px 12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(8,8,8,.72);
+    border:1px solid var(--line);
+    border-radius:50px;
+
+    backdrop-filter:blur(20px);
+
+    z-index:500;
+
+    opacity:0;
+    pointer-events:none;
+    transition:.7s;
+}
+
+.nav.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.nav-name{
+    padding-left:12px;
+    font-family:"Playfair Display",serif;
+    font-style:italic;
+    font-size:15px;
+}
+
+.nav-links{
+    display:flex;
+    gap:4px;
+}
+
+.nav-links button{
+    border:none;
+    background:transparent;
+    color:#777;
+
+    padding:9px 12px;
+    border-radius:20px;
+
+    font-size:10px;
+    letter-spacing:1px;
+
+    transition:.3s;
+}
+
+.nav-links button:hover{
+    color:white;
+    background:rgba(255,255,255,.07);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    position:relative;
+}
+
+.hero-mini{
+    color:#777;
+    font-size:10px;
+    letter-spacing:6px;
+    text-transform:uppercase;
+
+    opacity:0;
+    animation:fadeUp 1s 1.2s forwards;
+}
+
+.hero h1{
+    font-family:"DM Serif Display",serif;
+    font-weight:400;
+
+    font-size:clamp(60px,13vw,140px);
+    line-height:.86;
+
+    margin-top:25px;
+
+    opacity:0;
+    animation:fadeUp 1s 1.4s forwards;
+}
+
+.hero h1 span{
+    color:#777;
+}
+
+.hero-desc{
+    width:min(500px,90%);
+    color:#777;
+    font-size:13px;
+    line-height:1.9;
+
+    margin-top:35px;
+
+    opacity:0;
+    animation:fadeUp 1s 1.7s forwards;
+}
+
+.hero-from{
+    margin-top:35px;
+    color:#666;
+
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+
+    opacity:0;
+    animation:fadeUp 1s 1.9s forwards;
+}
+
+.hero-from strong{
+    color:#fff;
+}
+
+.scroll-hint{
+    position:absolute;
+    bottom:30px;
+
+    color:#444;
+    font-size:9px;
+    letter-spacing:4px;
+
+    animation:breathe 2s infinite;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes breathe{
+    50%{
+        opacity:.35;
+        transform:translateY(5px);
+    }
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music-player{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+
+    z-index:400;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:10px 14px 10px 10px;
+
+    background:rgba(10,10,10,.8);
+    border:1px solid var(--line);
+    border-radius:50px;
+
+    backdrop-filter:blur(20px);
+}
+
+.music-button{
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+    border:1px solid var(--line);
+
+    background:#f4f4f4;
+    color:#050505;
+
+    display:grid;
+    place-items:center;
+}
+
+.music-info{
+    display:none;
+}
+
+@media(min-width:600px){
+    .music-info{
+        display:block;
+        padding-right:5px;
+    }
+
+    .music-info small{
+        display:block;
+        color:#555;
+        font-size:8px;
+        letter-spacing:2px;
+        text-transform:uppercase;
+    }
+
+    .music-info span{
+        display:block;
+        color:#bbb;
+        font-size:10px;
+        margin-top:3px;
+    }
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section{
+    padding:120px 0;
+}
+
+.eyebrow{
+    color:#555;
+    font-size:9px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+}
+
+.section-title{
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(42px,7vw,72px);
+    font-weight:400;
+    line-height:.95;
+
+    margin-bottom:45px;
+}
+
+.section-title em{
+    color:#777;
+}
+
+
+/* =========================================================
+   MEMORY INTRO
+========================================================= */
+
+.memory-intro{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+
+    align-items:end;
+}
+
+.memory-intro p{
+    color:#777;
+    font-size:13px;
+    line-height:2;
+}
+
+@media(max-width:700px){
+    .memory-intro{
+        grid-template-columns:1fr;
+        gap:25px;
+    }
+}
+
+
+/* =========================================================
+   PHOTO GALLERY
+========================================================= */
+
+.gallery{
+    margin-top:50px;
+
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:12px;
+}
+
+.photo-card{
+    position:relative;
+    overflow:hidden;
+
+    min-height:350px;
+
+    border-radius:20px;
+
+    background:#111;
+    border:1px solid rgba(255,255,255,.06);
+
+    cursor:pointer;
+}
+
+.photo-card:nth-child(1){
+    grid-column:span 7;
+}
+
+.photo-card:nth-child(2){
+    grid-column:span 5;
+}
+
+.photo-card:nth-child(3){
+    grid-column:span 5;
+}
+
+.photo-card:nth-child(4){
+    grid-column:span 7;
+}
+
+.photo-card:nth-child(5){
+    grid-column:span 4;
+}
+
+.photo-card:nth-child(6){
+    grid-column:span 8;
+}
+
+.photo-card:nth-child(7){
+    grid-column:span 8;
+}
+
+.photo-card:nth-child(8){
+    grid-column:span 4;
+}
+
+.photo-card:nth-child(9){
+    grid-column:span 5;
+}
+
+.photo-card:nth-child(10){
+    grid-column:span 7;
+}
+
+.photo-card img{
+    width:100%;
+    height:100%;
+    min-height:350px;
+
+    object-fit:cover;
+
+    opacity:.78;
+
+    transition:
+        transform .8s cubic-bezier(.2,.8,.2,1),
+        opacity .5s;
+}
+
+.photo-card:hover img{
+    transform:scale(1.06);
+    opacity:1;
+}
+
+.photo-overlay{
+    position:absolute;
+    inset:auto 0 0 0;
+
+    padding:25px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.85)
+        );
+}
+
+.photo-number{
+    color:#aaa;
+    font-size:9px;
+    letter-spacing:3px;
+}
+
+.photo-caption{
+    font-family:"Playfair Display",serif;
+    font-style:italic;
+    margin-top:6px;
+}
+
+@media(max-width:600px){
+
+    .gallery{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .photo-card:nth-child(n){
+        grid-column:span 1;
+        min-height:260px;
+    }
+
+    .photo-card:nth-child(1),
+    .photo-card:nth-child(4),
+    .photo-card:nth-child(7),
+    .photo-card:nth-child(10){
+        grid-column:span 2;
+    }
+
+    .photo-card img{
+        min-height:260px;
+    }
+}
+
+
+/* =========================================================
+   GLASS CARD
+========================================================= */
+
+.glass{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.02)
+        );
+
+    border:1px solid var(--line);
+    border-radius:28px;
+
+    padding:35px;
+
+    box-shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+
+/* =========================================================
+   GAME SELECTOR
+========================================================= */
+
+.games-head{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.games-head p{
+    width:min(520px,100%);
+    margin:auto;
+
+    color:#666;
+    font-size:13px;
+    line-height:1.9;
+}
+
+.game-menu{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.game-button{
+    min-height:180px;
+
+    border:1px solid var(--line);
+    border-radius:22px;
+
+    background:var(--glass);
+    color:white;
+
+    padding:25px;
+
+    text-align:left;
+
+    transition:.35s;
+}
+
+.game-button:hover{
+    background:var(--glass2);
+    transform:translateY(-5px);
+    border-color:rgba(255,255,255,.22);
+}
+
+.game-icon{
+    font-size:25px;
+    margin-bottom:25px;
+}
+
+.game-button small{
+    display:block;
+    color:#555;
+    letter-spacing:3px;
+    font-size:8px;
+    text-transform:uppercase;
+}
+
+.game-button h3{
+    font-family:"DM Serif Display",serif;
+    font-weight:400;
+    font-size:25px;
+    margin-top:8px;
+}
+
+.game-button p{
+    color:#666;
+    font-size:10px;
+    margin-top:8px;
+    line-height:1.6;
+}
+
+@media(max-width:700px){
+    .game-menu{
+        grid-template-columns:1fr;
+    }
+}
+
+
+/* =========================================================
+   GAME MODAL
+========================================================= */
+
+.game-modal{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.82);
+
+    backdrop-filter:blur(15px);
+
+    z-index:800;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.game-modal.active{
+    display:flex;
+}
+
+.game-window{
+    width:min(650px,100%);
+    max-height:90vh;
+    overflow:auto;
+
+    background:#0d0d0d;
+    border:1px solid var(--line);
+    border-radius:28px;
+
+    padding:35px;
+
+    position:relative;
+
+    box-shadow:0 30px 100px #000;
+}
+
+.close-game{
+    position:absolute;
+    top:18px;
+    right:18px;
+
+    width:38px;
+    height:38px;
+
+    border:1px solid var(--line);
+    border-radius:50%;
+
+    background:transparent;
+    color:#aaa;
+}
+
+.game-window h2{
+    font-family:"DM Serif Display",serif;
+    font-size:40px;
+    font-weight:400;
+}
+
+.game-description{
+    color:#666;
+    font-size:12px;
+    line-height:1.8;
+    margin:10px 0 25px;
+}
+
+
+/* =========================================================
+   CATCH HEART GAME
+========================================================= */
+
+.heart-game{
+    height:380px;
+
+    position:relative;
+    overflow:hidden;
+
+    border:1px solid var(--line);
+    border-radius:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.035),
+            transparent 60%
+        );
+}
+
+.game-score{
+    position:absolute;
+    top:15px;
+    left:18px;
+    z-index:3;
+
+    color:#888;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.falling-heart{
+    position:absolute;
+
+    color:white;
+    font-size:25px;
+
+    cursor:pointer;
+
+    animation:fallHeart linear forwards;
+
+    user-select:none;
+}
+
+@keyframes fallHeart{
+    from{
+        transform:translateY(-50px) rotate(0);
+    }
+    to{
+        transform:translateY(430px) rotate(180deg);
+    }
+}
+
+.game-result{
+    text-align:center;
+    margin-top:20px;
+
+    min-height:45px;
+
+    color:#aaa;
+    font-family:"Playfair Display",serif;
+    font-style:italic;
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-progress{
+    height:2px;
+    background:#222;
+    margin-bottom:30px;
+}
+
+.quiz-progress-fill{
+    width:0%;
+    height:100%;
+    background:white;
+    transition:.4s;
+}
+
+.quiz-question{
+    font-family:"DM Serif Display",serif;
+    font-size:29px;
+    line-height:1.2;
+    margin-bottom:25px;
+}
+
+.answers{
+    display:grid;
+    gap:9px;
+}
+
+.answer{
+    border:1px solid var(--line);
+    background:transparent;
+    color:#aaa;
+
+    padding:15px 17px;
+
+    border-radius:13px;
+
+    text-align:left;
+
+    transition:.3s;
+}
+
+.answer:hover{
+    color:white;
+    background:rgba(255,255,255,.05);
+}
+
+.answer.correct{
+    background:#fff;
+    color:#000;
+}
+
+.answer.wrong{
+    opacity:.4;
+}
+
+.quiz-result{
+    text-align:center;
+    color:#aaa;
+    line-height:1.8;
+    margin-top:20px;
+}
+
+
+/* =========================================================
+   PUZZLE
+========================================================= */
+
+.puzzle{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    aspect-ratio:1;
+
+    width:min(420px,100%);
+    margin:auto;
+
+    gap:3px;
+
+    background:#000;
+    padding:3px;
+}
+
+.puzzle-piece{
+    background-size:300% 300%;
+    border:none;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.puzzle-piece.selected{
+    outline:2px solid white;
+    outline-offset:-2px;
+}
+
+.puzzle-help{
+    text-align:center;
+    color:#666;
+    font-size:11px;
+    margin-top:20px;
+}
+
+.puzzle-success{
+    text-align:center;
+    color:#aaa;
+    font-family:"Playfair Display",serif;
+    font-style:italic;
+    min-height:40px;
+    margin-top:15px;
+}
+
+
+/* =========================================================
+   SECRET
+========================================================= */
+
+.secret-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.secret-card{
+    aspect-ratio:1;
+
+    border:1px solid var(--line);
+    border-radius:16px;
+
+    background:#101010;
+
+    color:#555;
+    font-size:25px;
+
+    transition:.3s;
+}
+
+.secret-card:hover{
+    background:#181818;
+}
+
+.secret-card.found{
+    background:#f4f4f4;
+    color:#000;
+}
+
+.secret-message{
+    text-align:center;
+    margin-top:25px;
+
+    min-height:45px;
+
+    color:#aaa;
+    line-height:1.8;
+}
+
+@media(max-width:500px){
+    .secret-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+
+/* =========================================================
+   LOVE METER
+========================================================= */
+
+.love-meter{
+    text-align:center;
+}
+
+.meter-number{
+    font-family:"DM Serif Display",serif;
+    font-size:80px;
+    font-weight:400;
+}
+
+.meter-label{
+    color:#666;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.meter-track{
+    height:5px;
+    background:#1d1d1d;
+
+    border-radius:10px;
+
+    margin:30px auto;
+
+    overflow:hidden;
+    width:min(550px,100%);
+}
+
+.meter-fill{
+    width:0%;
+    height:100%;
+    background:#fff;
+
+    transition:width:2s cubic-bezier(.2,.8,.2,1);
+}
+
+.meter-button{
+    border:1px solid var(--line);
+    background:transparent;
+    color:#aaa;
+
+    padding:13px 22px;
+    border-radius:30px;
+
+    font-size:11px;
+
+    transition:.3s;
+}
+
+.meter-button:hover{
+    color:white;
+    border-color:#fff;
+}
+
+
+/* =========================================================
+   LETTER
+========================================================= */
+
+.letter-section{
+    text-align:center;
+}
+
+.locked-letter{
+    max-width:700px;
+    margin:auto;
+
+    min-height:350px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+}
+
+.lock-icon{
+    width:65px;
+    height:65px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid var(--line);
+    border-radius:50%;
+
+    font-size:22px;
+
+    margin-bottom:25px;
+}
+
+.locked-letter h3{
+    font-family:"DM Serif Display",serif;
+    font-size:35px;
+    font-weight:400;
+}
+
+.locked-letter p{
+    color:#666;
+    font-size:12px;
+    line-height:1.8;
+
+    max-width:430px;
+    margin:12px auto 25px;
+}
+
+.unlock-btn{
+    border:1px solid #fff;
+    background:#fff;
+    color:#000;
+
+    padding:14px 25px;
+
+    border-radius:30px;
+
+    font-size:10px;
+    letter-spacing:2px;
+
+    transition:.3s;
+}
+
+.unlock-btn:disabled{
+    opacity:.3;
+    cursor:not-allowed;
+}
+
+.full-letter{
+    display:none;
+
+    max-width:700px;
+    margin:auto;
+
+    text-align:left;
+
+    font-family:"Playfair Display",serif;
+    font-size:16px;
+    line-height:2;
+
+    color:#aaa;
+}
+
+.full-letter.show{
+    display:block;
+    animation:fadeUp .8s forwards;
+}
+
+.full-letter p{
+    margin-bottom:25px;
+}
+
+.full-letter .dear{
+    font-size:25px;
+    color:#fff;
+}
+
+.signature-final{
+    font-family:"DM Serif Display",serif;
+    color:white;
+    font-size:30px;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-section{
+    min-height:90vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+}
+
+.final-section h2{
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(60px,12vw,120px);
+    font-weight:400;
+    line-height:.85;
+}
+
+.final-section h2 span{
+    color:#666;
+}
+
+.final-section p{
+    width:min(470px,90%);
+    color:#666;
+    font-size:13px;
+    line-height:1.9;
+
+    margin-top:35px;
+}
+
+.final-button{
+    margin-top:30px;
+
+    padding:15px 28px;
+
+    border:1px solid var(--line);
+    border-radius:30px;
+
+    background:transparent;
+    color:#aaa;
+
+    font-size:10px;
+    letter-spacing:2px;
+
+    transition:.3s;
+}
+
+.final-button:hover{
+    color:#000;
+    background:#fff;
+}
+
+
+/* =========================================================
+   FINAL SURPRISE
+========================================================= */
+
+.surprise{
+    position:fixed;
+    inset:0;
+
+    z-index:2000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.9);
+    backdrop-filter:blur(20px);
+}
+
+.surprise.show{
+    display:flex;
+}
+
+.surprise-inner{
+    text-align:center;
+    max-width:650px;
+
+    animation:surpriseIn 1s forwards;
+}
+
+@keyframes surpriseIn{
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+.surprise-small{
+    color:#555;
+    font-size:9px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+}
+
+.surprise-inner h2{
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(48px,9vw,90px);
+    font-weight:400;
+
+    margin:25px 0;
+}
+
+.surprise-inner p{
+    color:#888;
+    font-family:"Playfair Display",serif;
+    font-style:italic;
+
+    line-height:2;
+}
+
+.close-surprise{
+    margin-top:35px;
+
+    border:1px solid var(--line);
+    background:transparent;
+    color:#777;
+
+    padding:12px 20px;
+    border-radius:30px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:50px 20px 80px;
+
+    text-align:center;
+
+    color:#333;
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+.float-heart{
+    position:fixed;
+    bottom:-30px;
+
+    z-index:100;
+
+    pointer-events:none;
+
+    color:rgba(255,255,255,.22);
+
+    animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    0%{
+        opacity:0;
+        transform:translateY(0) scale(.7);
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:translateY(-110vh) scale(1.3);
+    }
+}
+
+
+/* =========================================================
+   IMAGE LIGHTBOX
+========================================================= */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+
+    z-index:1500;
+
+    background:rgba(0,0,0,.92);
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.lightbox.show{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:95%;
+    max-height:85vh;
+
+    object-fit:contain;
+
+    border-radius:12px;
+}
+
+.close-lightbox{
+    position:absolute;
+    top:25px;
+    right:25px;
+
+    width:45px;
+    height:45px;
+
+    border:1px solid var(--line);
+    border-radius:50%;
+
+    background:rgba(0,0,0,.5);
+    color:white;
+
+    font-size:20px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:600px){
+
+    section{
+        padding:90px 0;
+    }
+
+    .glass{
+        padding:25px 20px;
+    }
+
+    .game-window{
+        padding:25px 20px;
+    }
+
+    .hero h1{
+        font-size:64px;
+    }
+
+    .nav-links button{
+        display:none;
+    }
+
+    .nav{
+        width:auto;
+        right:20px;
+        left:20px;
+        transform:none;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="noise"></div>
+
+
+<!-- =====================================================
+     LOADING SCREEN
+===================================================== -->
+
+<div id="loadingScreen">
+
+    <div class="loading-box">
+
+        <div class="loading-small">
+            a private experience
+        </div>
+
+        <div class="loading-title">
+            For Akbar.
+        </div>
+
+        <div class="loading-line">
+            <div
+                class="loading-progress"
+                id="loadingProgress">
+            </div>
+        </div>
+
+        <div
+            class="loading-number"
+            id="loadingNumber">
+            0%
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PIN SCREEN
+===================================================== -->
+
+<div id="pinScreen">
+
+    <div class="pin-box">
+
+        <div class="pin-label">
+            classified · for akbar only
+        </div>
+
+        <h1>Welcome.</h1>
+
+        <p>
+            Deandra left something here for you.
+            <br>
+            But first, you need the secret code.
+        </p>
+
+        <input
+            id="pinInput"
+            type="password"
+            maxlength="4"
+            inputmode="numeric"
+            placeholder="••••"
+        >
+
+        <button
+            class="primary-btn"
+            id="enterBtn">
+            Unlock My World
+        </button>
+
+        <div
+            class="pin-error"
+            id="pinError">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<div id="main">
+
+
+<!-- NAV -->
+
+<nav class="nav" id="nav">
+
+    <div class="nav-name">
+        Deandra ♡ Akbar
+    </div>
+
+    <div class="nav-links">
+
+        <button data-target="memories">
+            memories
+        </button>
+
+        <button data-target="games">
+            games
+        </button>
+
+        <button data-target="letter">
+            letter
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- MUSIC -->
+
+<div class="music-player">
+
+    <button
+        class="music-button"
+        id="musicButton">
+        ▶
+    </button>
+
+    <div class="music-info">
+
+        <small>
+            now playing
+        </small>
+
+        <span>
+            Shape of My Heart — Sting
+        </span>
+
+    </div>
+
+</div>
+
+<audio
+    id="music"
+    src="shape-of-my-heart.mp3"
+    loop>
+</audio>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="hero-mini">
+        boyfriend day · 2026
+    </div>
+
+    <h1>
+        For<br>
+        <span>Akbar.</span>
+    </h1>
+
+    <p class="hero-desc">
+        This isn't just a website.
+        It's a tiny digital world made from
+        memories, little games, and all the things
+        Deandra doesn't always know how to say.
+    </p>
+
+    <div class="hero-from">
+        made with love by <strong>Deandra</strong>
+    </div>
+
+    <div class="scroll-hint">
+        SCROLL TO ENTER OUR STORY ↓
+    </div>
+
+</header>
+
+
+<div class="page">
+
+
+<!-- =====================================================
+     MEMORIES
+===================================================== -->
+
+<section id="memories">
+
+    <div class="memory-intro">
+
+        <div>
+
+            <div class="eyebrow">
+                01 · our memories
+            </div>
+
+            <h2 class="section-title">
+                Ten little<br>
+                <em>pieces of us.</em>
+            </h2>
+
+        </div>
+
+        <p>
+            Some memories are loud.
+            Some are ridiculously small.
+            But somehow, the smallest moments
+            become the ones I want to keep forever.
+        </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+        <div class="photo-card">
+            <img src="foto1.jpg" alt="Memory 1">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 01</div>
+                <div class="photo-caption">where it all feels right.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto2.jpg" alt="Memory 2">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 02</div>
+                <div class="photo-caption">one of my favorites.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto3.jpg" alt="Memory 3">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 03</div>
+                <div class="photo-caption">just you being you.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto4.jpg" alt="Memory 4">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 04</div>
+                <div class="photo-caption">a moment worth keeping.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto5.jpg" alt="Memory 5">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 05</div>
+                <div class="photo-caption">my favorite kind of ordinary.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto6.jpg" alt="Memory 6">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 06</div>
+                <div class="photo-caption">still smiling about this one.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto7.jpg" alt="Memory 7">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 07</div>
+                <div class="photo-caption">you make things softer.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto8.jpg" alt="Memory 8">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 08</div>
+                <div class="photo-caption">another tiny chapter.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto9.jpg" alt="Memory 9">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 09</div>
+                <div class="photo-caption">and somehow, it's always you.</div>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="foto10.jpg" alt="Memory 10">
+            <div class="photo-overlay">
+                <div class="photo-number">MEMORY 10</div>
+                <div class="photo-caption">one more for the collection.</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GAMES
+===================================================== -->
+
+<section id="games">
+
+    <div class="games-head">
+
+        <div class="eyebrow">
+            02 · little games
+        </div>
+
+        <h2 class="section-title">
+            Don't leave yet.<br>
+            <em>There's more.</em>
+        </h2>
+
+        <p>
+            Apparently, reading a love letter isn't enough.
+            So Deandra made you some tiny games.
+            Complete them all and maybe you'll discover
+            something hidden at the end.
+        </p>
+
+    </div>
+
+
+    <div class="game-menu">
+
+        <button
+            class="game-button"
+            id="heartGameBtn">
+
+            <div class="game-icon">♡</div>
+
+            <small>
+                game 01
+            </small>
+
+            <h3>
+                Catch My Heart
+            </h3>
+
+            <p>
+                Catch 10 falling hearts.
+            </p>
+
+        </button>
+
+
+        <button
+            class="game-button"
+            id="quizGameBtn">
+
+            <div class="game-icon">?</div>
+
+            <small>
+                game 02
+            </small>
+
+            <h3>
+                How Well?
+            </h3>
+
+            <p>
+                Let's see how well you know us.
+            </p>
+
+        </button>
+
+
+        <button
+            class="game-button"
+            id="secretGameBtn">
+
+            <div class="game-icon">✦</div>
+
+            <small>
+                game 03
+            </small>
+
+            <h3>
+                Find The Secret
+            </h3>
+
+            <p>
+                One card contains something special.
+            </p>
+
+        </button>
+
+
+        <button
+            class="game-button"
+            id="puzzleGameBtn">
+
+            <div class="game-icon">⌘</div>
+
+            <small>
+                game 04
+            </small>
+
+            <h3>
+                Put Us Together
+            </h3>
+
+            <p>
+                Solve the little photo puzzle.
+            </p>
+
+        </button>
+
+
+        <button
+            class="game-button"
+            id="meterGameBtn">
+
+            <div class="game-icon">♡</div>
+
+            <small>
+                bonus
+            </small>
+
+            <h3>
+                Love Meter
+            </h3>
+
+            <p>
+                Let's measure something impossible.
+            </p>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LETTER
+===================================================== -->
+
+<section
+    id="letter"
+    class="letter-section">
+
+    <div class="eyebrow">
+        03 · something from me
+    </div>
+
+    <h2 class="section-title">
+        A letter<br>
+        <em>for you.</em>
+    </h2>
+
+
+    <div
+        class="glass locked-letter"
+        id="lockedLetter">
+
+        <div class="lock-icon">
+            🔒
+        </div>
+
+        <h3>
+            Still locked.
+        </h3>
+
+        <p>
+            Complete at least three little experiences
+            above before opening this.
+            Consider it a tiny challenge from Deandra.
+        </p>
+
+        <button
+            class="unlock-btn"
+            id="unlockLetter"
+            disabled>
+            COMPLETE 3 TO UNLOCK
+        </button>
+
+    </div>
+
+
+    <div
+        class="full-letter"
+        id="fullLetter">
+
+        <p class="dear">
+            Dear Akbar,
+        </p>
+
+        <p>
+            Happy Boyfriend Day.
+        </p>
+
+        <p>
+            I know a website can never really explain
+            everything that a person means to me,
+            but I wanted to make this little place
+            anyway.
+        </p>
+
+        <p>
+            Because sometimes I look at you and realize
+            how many ordinary moments have somehow
+            become my favorite memories.
+        </p>
+
+        <p>
+            Thank you for every conversation,
+            every laugh, every random moment,
+            every time you stayed,
+            and every little thing you probably don't
+            even realize means so much to me.
+        </p>
+
+        <p>
+            I don't need every day to be perfect.
+            I just want the real ones.
+            The silly ones.
+            The quiet ones.
+            The days where we don't know what to say
+            but still want to stay.
+        </p>
+
+        <p>
+            If someone asked me what my favorite part
+            of this story is, I don't think I'd be able
+            to choose one moment.
+        </p>
+
+        <p>
+            I'd choose the fact that it's ours.
+        </p>
+
+        <p>
+            And if I could go back and meet you all over
+            again, I'd still want our paths to cross.
+        </p>
+
+        <p>
+            Happy Boyfriend Day, Akbar.
+            Thank you for being you.
+        </p>
+
+        <p class="signature-final">
+            Always,<br>
+            Deandra ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final-section">
+
+    <div class="eyebrow">
+        04 · the end
+    </div>
+
+    <h2>
+        Still<br>
+        <span>choosing you.</span>
+    </h2>
+
+    <p>
+        You made it all the way here.
+        Which means you officially survived
+        Deandra's unnecessarily elaborate
+        digital love letter.
+    </p>
+
+    <button
+        class="final-button"
+        id="surpriseButton">
+        ONE LAST SURPRISE
+    </button>
+
+</section>
+
+
+</div>
+
+
+<footer>
+    made for akbar · with love from deandra ♡
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+     GAME MODAL
+===================================================== -->
+
+<div
+    class="game-modal"
+    id="gameModal">
+
+    <div class="game-window">
+
+        <button
+            class="close-game"
+            id="closeGame">
+            ×
+        </button>
+
+        <div id="gameContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     IMAGE LIGHTBOX
+===================================================== -->
+
+<div
+    class="lightbox"
+    id="lightbox">
+
+    <button
+        class="close-lightbox"
+        id="closeLightbox">
+        ×
+    </button>
+
+    <img
+        id="lightboxImage"
+        src=""
+        alt="Expanded memory">
+
+</div>
+
+
+<!-- =====================================================
+     FINAL SURPRISE
+===================================================== -->
+
+<div
+    class="surprise"
+    id="surprise">
+
+    <div class="surprise-inner">
+
+        <div class="surprise-small">
+            from deandra
+        </div>
+
+        <h2>
+            If I had<br>
+            to choose...
+        </h2>
+
+        <p>
+            I'd choose you.<br>
+            In the loud days.<br>
+            In the quiet ones.<br>
+            In the ordinary moments.<br>
+            In every little version of us.
+        </p>
+
+        <button
+            class="close-surprise"
+            id="closeSurprise">
+            keep this secret ♡
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+const loadingScreen =
+    document.getElementById("loadingScreen");
+
+const loadingProgress =
+    document.getElementById("loadingProgress");
+
+const loadingNumber =
+    document.getElementById("loadingNumber");
+
+const pinScreen =
+    document.getElementById("pinScreen");
+
+const pinInput =
+    document.getElementById("pinInput");
+
+const enterBtn =
+    document.getElementById("enterBtn");
+
+const pinError =
+    document.getElementById("pinError");
+
+const main =
+    document.getElementById("main");
+
+const nav =
+    document.getElementById("nav");
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const gameModal =
+    document.getElementById("gameModal");
+
+const gameContent =
+    document.getElementById("gameContent");
+
+const closeGame =
+    document.getElementById("closeGame");
+
+const unlockLetter =
+    document.getElementById("unlockLetter");
+
+const lockedLetter =
+    document.getElementById("lockedLetter");
+
+const fullLetter =
+    document.getElementById("fullLetter");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let completedGames = 0;
+let completedSet = new Set();
+
+let heartInterval = null;
+let heartScore = 0;
+
+let quizIndex = 0;
+let quizScore = 0;
+
+let secretFound = false;
+
+let puzzleOrder = [];
+let puzzleSelected = null;
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+let loading = 0;
+
+const loadingTimer = setInterval(() => {
+
+    loading += Math.floor(Math.random() * 5) + 1;
+
+    if(loading >= 100){
+
+        loading = 100;
+
+        clearInterval(loadingTimer);
+
+        loadingProgress.style.width = "100%";
+        loadingNumber.textContent = "100%";
+
+        setTimeout(() => {
+
+            loadingScreen.style.opacity = "0";
+            loadingScreen.style.visibility = "hidden";
+
+            setTimeout(() => {
+
+                loadingScreen.style.display = "none";
+                pinScreen.style.display = "flex";
+
+            },800);
+
+        },700);
+
+    }
+
+    loadingProgress.style.width =
+        loading + "%";
+
+    loadingNumber.textContent =
+        loading + "%";
+
+},80);
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+function unlockWebsite(){
+
+    const value = pinInput.value.trim();
+
+    if(value === "1111"){
+
+        pinError.textContent =
+            "Access granted ♡";
+
+        pinError.style.color =
+            "#aaa";
+
+        setTimeout(() => {
+
+            pinScreen.style.opacity = "0";
+
+            setTimeout(() => {
+
+                pinScreen.style.display = "none";
+
+                main.style.display = "block";
+
+                nav.classList.add("active");
+
+                startFloatingHearts();
+
+                // Browser may block autoplay.
+                // User can use the music button.
+
+                music.play()
+                    .then(() => {
+                        musicButton.textContent = "Ⅱ";
+                    })
+                    .catch(() => {
+                        musicButton.textContent = "▶";
+                    });
+
+            },700);
+
+        },500);
+
+    }else{
+
+        pinError.textContent =
+            "Hmm... that's not the secret code.";
+
+        pinError.style.color =
+            "#666";
+
+        pinInput.value = "";
+
+        pinInput.focus();
+
+    }
+
+}
+
+enterBtn.addEventListener(
+    "click",
+    unlockWebsite
+);
+
+pinInput.addEventListener(
+    "keydown",
+    e => {
+
+        if(e.key === "Enter"){
+            unlockWebsite();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+musicButton.addEventListener(
+    "click",
+    () => {
+
+        if(music.paused){
+
+            music.play()
+                .then(() => {
+                    musicButton.textContent = "Ⅱ";
+                })
+                .catch(() => {});
+
+        }else{
+
+            music.pause();
+
+            musicButton.textContent = "▶";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document.querySelectorAll(
+    ".nav-links button"
+).forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const target =
+                document.getElementById(
+                    button.dataset.target
+                );
+
+            if(target){
+                target.scrollIntoView({
+                    behavior:"smooth"
+                });
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   PHOTO LIGHTBOX
+========================================================= */
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightboxImage =
+    document.getElementById("lightboxImage");
+
+const closeLightbox =
+    document.getElementById("closeLightbox");
+
+document.querySelectorAll(
+    ".photo-card"
+).forEach(card => {
+
+    card.addEventListener(
+        "click",
+        () => {
+
+            const image =
+                card.querySelector("img");
+
+            lightboxImage.src =
+                image.src;
+
+            lightbox.classList.add("show");
+
+        }
+    );
+
+});
+
+closeLightbox.addEventListener(
+    "click",
+    () => {
+        lightbox.classList.remove("show");
+    }
+);
+
+lightbox.addEventListener(
+    "click",
+    e => {
+
+        if(e.target === lightbox){
+            lightbox.classList.remove("show");
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GAME MODAL
+========================================================= */
+
+function openGame(content){
+
+    gameContent.innerHTML = content;
+
+    gameModal.classList.add("active");
+
+}
+
+function closeGameModal(){
+
+    gameModal.classList.remove("active");
+
+    if(heartInterval){
+
+        clearInterval(heartInterval);
+        heartInterval = null;
+
+    }
+
+}
+
+closeGame.addEventListener(
+    "click",
+    closeGameModal
+);
+
+gameModal.addEventListener(
+    "click",
+    e => {
+
+        if(e.target === gameModal){
+            closeGameModal();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GAME COMPLETION
+========================================================= */
+
+function completeGame(name){
+
+    if(completedSet.has(name)){
+        return;
+    }
+
+    completedSet.add(name);
+
+    completedGames++;
+
+    updateLetter();
+
+}
+
+
+/* =========================================================
+   LETTER UNLOCK
+========================================================= */
+
+function updateLetter(){
+
+    if(completedGames >= 3){
+
+        unlockLetter.disabled = false;
+
+        unlockLetter.textContent =
+            "UNLOCK THE LETTER ♡";
+
+        lockedLetter.querySelector(
+            ".lock-icon"
+        ).textContent = "♡";
+
+        lockedLetter.querySelector(
+            "h3"
+        ).textContent =
+            "It's yours.";
+
+        lockedLetter.querySelector(
+            "p"
+        ).textContent =
+            "You completed the little challenge. The letter is waiting.";
+
+    }else{
+
+        unlockLetter.textContent =
+            "COMPLETE " +
+            (3 - completedGames) +
+            " MORE TO UNLOCK";
+
+    }
+
+}
+
+
+/* =========================================================
+   GAME 01 — CATCH HEART
+========================================================= */
+
+document.getElementById(
+    "heartGameBtn"
+).addEventListener(
+    "click",
+    startHeartGame
+);
+
+
+function startHeartGame(){
+
+    heartScore = 0;
+
+    openGame(`
+
+        <div class="eyebrow">
+            GAME 01
+        </div>
+
+        <h2>
+            Catch My Heart ♡
+        </h2>
+
+        <p class="game-description">
+            Catch 10 hearts before they disappear.
+            Easy, right?
+        </p>
+
+        <div class="heart-game" id="heartGameArea">
+
+            <div class="game-score">
+                HEARTS: <span id="heartScore">0</span> / 10
+            </div>
+
+        </div>
+
+        <div class="game-result" id="heartResult">
+            Tap the hearts.
+        </div>
+
+    `);
+
+    const area =
+        document.getElementById(
+            "heartGameArea"
+        );
+
+    heartInterval =
+        setInterval(() => {
+
+            if(heartScore >= 10){
+                clearInterval(heartInterval);
+                return;
+            }
+
+            const heart =
+                document.createElement("div");
+
+            heart.className =
+                "falling-heart";
+
+            heart.textContent =
+                Math.random() > .5
+                ? "♡"
+                : "♥";
+
+            const maxX =
+                Math.max(
+                    0,
+                    area.clientWidth - 30
+                );
+
+            heart.style.left =
+                Math.random() * maxX + "px";
+
+            heart.style.animationDuration =
+                (2.5 + Math.random() * 2) + "s";
+
+            heart.addEventListener(
+                "click",
+                () => {
+
+                    heartScore++;
+
+                    const score =
+                        document.getElementById(
+                            "heartScore"
+                        );
+
+                    if(score){
+                        score.textContent =
+                            heartScore;
+                    }
+
+                    heart.remove();
+
+                    if(heartScore >= 10){
+
+                        clearInterval(
+                            heartInterval
+                        );
+
+                        document.getElementById(
+                            "heartResult"
+                        ).textContent =
+                            "You caught it. ♡";
+
+                        completeGame(
+                            "heart"
+                        );
+
+                    }
+
+                }
+            );
+
+            area.appendChild(heart);
+
+            setTimeout(
+                () => heart.remove(),
+                5000
+            );
+
+        },700);
+
+}
+
+
+/* =========================================================
+   GAME 02 — QUIZ
+========================================================= */
+
+const quizData = [
+
+    {
+        question:
+            "What's the most dangerous thing about loving someone?",
+        answers:[
+            "Getting attached",
+            "Missing them",
+            "Caring too much",
+            "All of the above"
+        ],
+        correct:3
+    },
+
+    {
+        question:
+            "What does Deandra probably want most?",
+        answers:[
+            "A million dollars",
+            "More memories with Akbar",
+            "A private island",
+            "Unlimited sleep"
+        ],
+        correct:1
+    },
+
+    {
+        question:
+            "If our story were a movie, what genre would it be?",
+        answers:[
+            "Romance",
+            "Comedy",
+            "A little bit of everything",
+            "Documentary about two idiots"
+        ],
+        correct:2
+    },
+
+    {
+        question:
+            "Who is Akbar's biggest fan?",
+        answers:[
+            "Deandra",
+            "Definitely Deandra",
+            "Still Deandra",
+            "Why are you asking?"
+        ],
+        correct:0
+    }
+
+];
+
+
+document.getElementById(
+    "quizGameBtn"
+).addEventListener(
+    "click",
+    startQuiz
+);
+
+
+function startQuiz(){
+
+    quizIndex = 0;
+    quizScore = 0;
+
+    openGame(`
+        <div id="quizRoot"></div>
+    `);
+
+    renderQuiz();
+
+}
+
+
+function renderQuiz(){
+
+    const root =
+        document.getElementById(
+            "quizRoot"
+        );
+
+    const q =
+        quizData[quizIndex];
+
+    const progress =
+        (quizIndex /
+        quizData.length) * 100;
+
+    root.innerHTML = `
+
+        <div class="eyebrow">
+            GAME 02 · QUESTION
+            ${quizIndex + 1}/${quizData.length}
+        </div>
+
+        <div class="quiz-progress">
+            <div
+                class="quiz-progress-fill"
+                style="width:${progress}%">
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            ${q.question}
+        </div>
+
+        <div class="answers">
+
+            ${q.answers.map(
+                (answer,index) => `
+
+                <button
+                    class="answer"
+                    data-index="${index}">
+                    ${answer}
+                </button>
+
+            `).join("")}
+
+        </div>
+
+        <div
+            class="quiz-result"
+            id="quizResult">
+        </div>
+
+    `;
+
+    root.querySelectorAll(
+        ".answer"
+    ).forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const selected =
+                    Number(
+                        button.dataset.index
+                    );
+
+                root.querySelectorAll(
+                    ".answer"
+                ).forEach(
+                    b => b.disabled = true
+                );
+
+                if(selected === q.correct){
+
+                    button.classList.add(
+                        "correct"
+                    );
+
+                    quizScore++;
+
+                    document.getElementById(
+                        "quizResult"
+                    ).textContent =
+                        "Correct. You know us too well ♡";
+
+                }else{
+
+                    button.classList.add(
+                        "wrong"
+                    );
+
+                    root.querySelectorAll(
+                        ".answer"
+                    )[q.correct]
+                    .classList.add(
+                        "correct"
+                    );
+
+                    document.getElementById(
+                        "quizResult"
+                    ).textContent =
+                        "Close enough. Deandra still loves you.";
+
+                }
+
+                setTimeout(() => {
+
+                    quizIndex++;
+
+                    if(
+                        quizIndex <
+                        quizData.length
+                    ){
+
+                        renderQuiz();
+
+                    }else{
+
+                        showQuizResult();
+
+                    }
+
+                },1100);
+
+            }
+        );
+
+    });
+
+}
+
+
+function showQuizResult(){
+
+    const root =
+        document.getElementById(
+            "quizRoot"
+        );
+
+    const message =
+        quizScore === quizData.length
+        ? "Okay... you actually know us."
+        : "Not perfect, but I'll let it slide. ♡";
+
+    root.innerHTML = `
+
+        <div style="text-align:center;padding:40px 10px">
+
+            <div class="eyebrow">
+                QUIZ COMPLETE
+            </div>
+
+            <h2>
+                ${quizScore}/${quizData.length}
+            </h2>
+
+            <p
+                style="
+                color:#777;
+                margin-top:15px;
+                line-height:1.8;
+                ">
+                ${message}
+            </p>
+
+            <button
+                class="unlock-btn"
+                id="finishQuiz"
+                style="margin-top:25px">
+                KEEP GOING ♡
+            </button>
+
+        </div>
+
+    `;
+
+    document.getElementById(
+        "finishQuiz"
+    ).addEventListener(
+        "click",
+        () => {
+
+            completeGame("quiz");
+            closeGameModal();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   GAME 03 — SECRET
+========================================================= */
+
+document.getElementById(
+    "secretGameBtn"
+).addEventListener(
+    "click",
+    startSecret
+);
+
+
+function startSecret(){
+
+    openGame(`
+
+        <div class="eyebrow">
+            GAME 03 · SECRET
+        </div>
+
+        <h2>
+            Find The Secret ✦
+        </h2>
+
+        <p class="game-description">
+            One of these cards contains a message.
+            Find it.
+        </p>
+
+        <div
+            class="secret-grid"
+            id="secretGrid">
+        </div>
+
+        <div
+            class="secret-message"
+            id="secretMessage">
+            One of them is hiding something.
+        </div>
+
+    `);
+
+    const grid =
+        document.getElementById(
+            "secretGrid"
+        );
+
+    const secret =
+        Math.floor(
+            Math.random() * 12
+        );
+
+    for(let i=0;i<12;i++){
+
+        const card =
+            document.createElement("button");
+
+        card.className =
+            "secret-card";
+
+        card.textContent = "?";
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                if(i === secret){
+
+                    card.classList.add(
+                        "found"
+                    );
+
+                    card.textContent =
+                        "♡";
+
+                    document.getElementById(
+                        "secretMessage"
+                    ).textContent =
+                        "You found it. You are, unfortunately, very loved by Deandra. ♡";
+
+                    if(!secretFound){
+
+                        secretFound = true;
+
+                        completeGame(
+                            "secret"
+                        );
+
+                    }
+
+                }else{
+
+                    card.textContent =
+                        "×";
+
+                    card.style.opacity =
+                        ".35";
+
+                }
+
+            }
+        );
+
+        grid.appendChild(card);
+
+    }
+
+}
+
+
+/* =========================================================
+   GAME 04 — PUZZLE
+========================================================= */
+
+document.getElementById(
+    "puzzleGameBtn"
+).addEventListener(
+    "click",
+    startPuzzle
+);
+
+
+function startPuzzle(){
+
+    puzzleSelected = null;
+
+    puzzleOrder =
+        [0,1,2,3,4,5,6,7,8];
+
+    // Shuffle until not solved.
+    puzzleOrder.sort(
+        () => Math.random() - .5
+    );
+
+    if(
+        puzzleOrder.every(
+            (value,index) =>
+                value === index
+        )
+    ){
+
+        puzzleOrder.reverse();
+
+    }
+
+    openGame(`
+
+        <div class="eyebrow">
+            GAME 04 · PUZZLE
+        </div>
+
+        <h2>
+            Put Us Together
+        </h2>
+
+        <p class="game-description">
+            Tap two pieces to swap them.
+            Rebuild the picture.
+        </p>
+
+        <div
+            class="puzzle"
+            id="puzzle">
+        </div>
+
+        <div
+            class="puzzle-help">
+            first tap = select · second tap = swap
+        </div>
+
+        <div
+            class="puzzle-success"
+            id="puzzleSuccess">
+        </div>
+
+    `);
+
+    renderPuzzle();
+
+}
+
+
+function renderPuzzle(){
+
+    const puzzle =
+        document.getElementById(
+            "puzzle"
+        );
+
+    if(!puzzle){
+        return;
+    }
+
+    puzzle.innerHTML = "";
+
+    puzzleOrder.forEach(
+        (piece,index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "puzzle-piece";
+
+            button.style.backgroundImage =
+                "url('foto10.jpg')";
+
+            const row =
+                Math.floor(piece / 3);
+
+            const col =
+                piece % 3;
+
+            button.style.backgroundPosition =
+                `${col * 50}% ${row * 50}%`;
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    if(
+                        puzzleSelected === null
+                    ){
+
+                        puzzleSelected =
+                            index;
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+                    }else{
+
+                        const other =
+                            puzzleSelected;
+
+                        [
+                            puzzleOrder[other],
+                            puzzleOrder[index]
+                        ] = [
+                            puzzleOrder[index],
+                            puzzleOrder[other]
+                        ];
+
+                        puzzleSelected =
+                            null;
+
+                        renderPuzzle();
+
+                        checkPuzzle();
+
+                    }
+
+                }
+            );
+
+            puzzle.appendChild(button);
+
+        }
+    );
+
+}
+
+
+function checkPuzzle(){
+
+    const solved =
+        puzzleOrder.every(
+            (value,index) =>
+                value === index
+        );
+
+    if(solved){
+
+        document.getElementById(
+            "puzzleSuccess"
+        ).textContent =
+            "You put us back together. ♡";
+
+        completeGame(
+            "puzzle"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOVE METER
+========================================================= */
+
+document.getElementById(
+    "meterGameBtn"
+).addEventListener(
+    "click",
+    startMeter
+);
+
+
+function startMeter(){
+
+    openGame(`
+
+        <div class="eyebrow">
+            BONUS · LOVE METER
+        </div>
+
+        <h2>
+            Something impossible.
+        </h2>
+
+        <p class="game-description">
+            Let's see if this machine can measure
+            how much Deandra loves Akbar.
+        </p>
+
+        <div class="love-meter">
+
+            <div
+                class="meter-number"
+                id="meterNumber">
+                0%
+            </div>
+
+            <div class="meter-label">
+                scientifically questionable
+            </div>
+
+            <div class="meter-track">
+
+                <div
+                    class="meter-fill"
+                    id="meterFill">
+                </div>
+
+            </div>
+
+            <button
+                class="meter-button"
+                id="measureLove">
+                MEASURE IT
+            </button>
+
+            <p
+                id="meterMessage"
+                style="
+                color:#666;
+                font-family:'Playfair Display',serif;
+                font-style:italic;
+                margin-top:25px;
+                ">
+            </p>
+
+        </div>
+
+    `);
+
+    document.getElementById(
+        "measureLove"
+    ).addEventListener(
+        "click",
+        () => {
+
+            const number =
+                document.getElementById(
+                    "meterNumber"
+                );
+
+            const fill =
+                document.getElementById(
+                    "meterFill"
+                );
+
+            const message =
+                document.getElementById(
+                    "meterMessage"
+                );
+
+            fill.style.width = "100%";
+
+            let current = 0;
+
+            const counter =
+                setInterval(() => {
+
+                    current += 2;
+
+                    if(current >= 100){
+
+                        current = 100;
+
+                        clearInterval(
+                            counter
+                        );
+
+                        message.textContent =
+                            "Error: love exceeds measurable limits. ♡";
+
+                        completeGame(
+                            "meter"
+                        );
+
+                    }
+
+                    number.textContent =
+                        current + "%";
+
+                },30);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LETTER
+========================================================= */
+
+unlockLetter.addEventListener(
+    "click",
+    () => {
+
+        if(completedGames < 3){
+            return;
+        }
+
+        lockedLetter.style.display =
+            "none";
+
+        fullLetter.classList.add(
+            "show"
+        );
+
+        fullLetter.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+    }
+);
+
+
+/* =========================================================
+   FINAL SURPRISE
+========================================================= */
+
+const surprise =
+    document.getElementById(
+        "surprise"
+    );
+
+document.getElementById(
+    "surpriseButton"
+).addEventListener(
+    "click",
+    () => {
+
+        surprise.classList.add(
+            "show"
+        );
+
+    }
+);
+
+document.getElementById(
+    "closeSurprise"
+).addEventListener(
+    "click",
+    () => {
+
+        surprise.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+function createFloatingHeart(){
+
+    if(
+        document.visibilityState !==
+        "visible"
+    ){
+        return;
+    }
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+    heart.className =
+        "float-heart";
+
+    heart.textContent =
+        Math.random() > .5
+        ? "♡"
+        : "♥";
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (9 + Math.random() * 15) + "px";
+
+    heart.style.animationDuration =
+        (7 + Math.random() * 8) + "s";
+
+    document.body.appendChild(
+        heart
+    );
+
+    setTimeout(
+        () => heart.remove(),
+        15000
+    );
+
+}
+
+
+function startFloatingHearts(){
+
+    setInterval(
+        createFloatingHeart,
+        1100
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    e => {
+
+        if(e.key === "Escape"){
+
+            gameModal.classList.remove(
+                "active"
+            );
+
+            lightbox.classList.remove(
+                "show"
+            );
+
+            surprise.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+  </html>
